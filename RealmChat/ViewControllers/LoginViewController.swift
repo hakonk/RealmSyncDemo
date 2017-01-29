@@ -34,17 +34,22 @@ final class LoginViewController: UIViewController{
             guard let strongSelf = self else { return }
             strongSelf.setUserInteraction(enabled: true)
             if let error = error {
-                strongSelf.display(message: error.improvedError)
+                strongSelf.display(message: error.improvedError, wasSuccessful: false)
             } else {
                 guard let user = user else { return }
-                strongSelf.display(message: "Logged in with user: \(user.identity)")
+                strongSelf.display(message: "Logged in with user: \(user.identity)", wasSuccessful: true)
             }
         }
     }
     
-    private func display(message: String){
+    private func display(message: String, wasSuccessful: Bool){
         let controller = UIAlertController(title: "Login:", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default){
+            _ in
+            if wasSuccessful{
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+        }
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
     }
@@ -52,7 +57,7 @@ final class LoginViewController: UIViewController{
     @IBAction private func tappedLogin(_ _: Any) {
         login(register: false)
     }
-    @IBAction private func tappedRegister(_ sender: Any) {
+    @IBAction private func tappedRegister(_ _: Any) {
         login(register: true)
     }
 }

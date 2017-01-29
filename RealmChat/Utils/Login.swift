@@ -28,7 +28,7 @@ struct LoginHelper{
     let password: String
     let register: Bool
     
-    private func config(){
+    private func configure(user: SyncUser){
         
     }
     

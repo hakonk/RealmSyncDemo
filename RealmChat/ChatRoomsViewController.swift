@@ -7,14 +7,29 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct UserState{
     static var isLoggedIn: Bool{
+        for (_, user) in SyncUser.__allUsers(){
+            switch user.state{
+            case .active:
+                return true
+            default: break
+            }
+        }
         return false
     }
 }
 
 final class ChatRoomsViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        for (_, user) in SyncUser.__allUsers(){
+            user.logOut()
+        }
+    }
 
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var tableView: UITableView!
