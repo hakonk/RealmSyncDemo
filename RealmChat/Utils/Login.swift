@@ -28,16 +28,17 @@ struct LoginHelper{
     let password: String
     let register: Bool
     
-    private func configure(user: SyncUser){
-        
-    }
-    
     private var isInputValid: Bool{
         return !username.isEmpty && !password.isEmpty
     }
     
-    private func urlFrom(host: String) -> URL{
-        return URL(string: "http://\(host):9080")!
+    private func configure(with user: SyncUser?, host: String){
+        if let user = user {
+            let syncUrl = URL(string: "realm://\(host):9080/\(user.identity!)/chatMessages")!
+            Realm.Configuration.defaultConfiguration = Realm.Configuration(
+                syncConfiguration: SyncConfiguration(user: user, realmURL: syncUrl),
+                objectTypes: [ChatMessage.self])
+        }
     }
     
     func authenticate(authHost: String, callback: @escaping (SyncUser?, NSError?) -> Void) {
@@ -45,15 +46,17 @@ struct LoginHelper{
             callback(nil, LoginError.insufficientInput.error)
             return
         }
+        let url = URL(string: "http://\(authHost):9080")!
         
         let credentials = SyncCredentials.usernamePassword(username: username, password: password, register: register)
-        SyncUser.logIn(with: credentials, server: urlFrom(host: authHost)) { user, error in
+        SyncUser.logIn(with: credentials, server: url) { user, error in
             DispatchQueue.main.async {
                 let error = error as NSError?
                 
                 if let error = error, error._code == SyncError.httpStatusCodeError.rawValue && (error.userInfo["statusCode"] as? Int) == 400 {
                     callback(nil, LoginError.wrongUserNamePassword.error)
                 } else {
+                    self.configure(with: user, host: authHost)
                     callback(user, error)
                 }
             }

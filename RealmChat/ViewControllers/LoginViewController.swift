@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 final class LoginViewController: UIViewController{
     
     @IBOutlet private weak var usernameTextField: UITextField!

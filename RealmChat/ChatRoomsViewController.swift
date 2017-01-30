@@ -9,16 +9,20 @@
 import UIKit
 import RealmSwift
 
-struct UserState{
-    static var isLoggedIn: Bool{
-        for (_, user) in SyncUser.__allUsers(){
-            switch user.state{
-            case .active:
-                return true
-            default: break
-            }
-        }
-        return false
+final class ChatRoomDataSource: NSObject{
+    
+    
+}
+
+extension ChatRoomDataSource: UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 0
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
 
@@ -26,18 +30,17 @@ final class ChatRoomsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for (_, user) in SyncUser.__allUsers(){
-            user.logOut()
-        }
+        User.logOutAllUsers()
     }
 
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var tableView: UITableView!
+    private var dataSource = ChatRoomDataSource()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loginButton.isHidden = UserState.isLoggedIn
-        tableView.isHidden = !UserState.isLoggedIn
+        loginButton.isHidden = User.isLoggedIn
+        tableView.isHidden = !User.isLoggedIn
     }
 
     
