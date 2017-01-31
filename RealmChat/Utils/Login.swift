@@ -37,7 +37,7 @@ struct LoginHelper{
             let syncUrl = URL(string: "realm://\(host):9080/\(user.identity!)/chatMessages")!
             Realm.Configuration.defaultConfiguration = Realm.Configuration(
                 syncConfiguration: SyncConfiguration(user: user, realmURL: syncUrl),
-                objectTypes: [ChatMessage.self])
+                objectTypes: ModelUtil.modelTypes)
         }
     }
     
