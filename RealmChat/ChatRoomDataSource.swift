@@ -21,6 +21,10 @@ final class ChatRoomDataSource: NSObject{
         chatRooms = fetchChatRooms()
     }
     
+    func room(at index: Int) -> ChatRoom{
+        return chatRooms[index]
+    }
+    
     lazy var chatRooms: Results<ChatRoom> = fetchChatRooms()
 }
 
@@ -35,6 +39,7 @@ extension ChatRoomDataSource: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomCell", for: indexPath)
         cell.textLabel?.text = chatRooms[indexPath.row].members
+        cell.selectionStyle = .none
         return UITableViewCell()
     }
 }

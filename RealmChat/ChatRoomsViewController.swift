@@ -13,6 +13,7 @@ final class ChatRoomsViewController: UIViewController {
     
     override func viewDidLoad() {
         tableView.dataSource = self.dataSource
+        tableView.delegate = self
         super.viewDidLoad()
     }
     
@@ -28,7 +29,7 @@ final class ChatRoomsViewController: UIViewController {
 
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var tableView: UITableView!
-    private var dataSource = ChatRoomDataSource()
+    fileprivate var dataSource = ChatRoomDataSource()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,7 +38,12 @@ final class ChatRoomsViewController: UIViewController {
         dataSource.fetchObjects()
         tableView.reloadData()
     }
-
-    
 }
-
+extension ChatRoomsViewController: UITableViewDelegate{
+    
+    func tableView(_ _: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewController = UIStoryboard.viewController(id: "ChatRoomViewController") as? ChatRoomViewController else { return }
+        viewController.chatRoom = dataSource.room(at: indexPath.row)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+}
