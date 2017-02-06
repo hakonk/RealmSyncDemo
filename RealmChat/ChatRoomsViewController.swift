@@ -11,6 +11,7 @@ import RealmSwift
 
 final class ChatRoomsViewController: UIViewController {
     
+    @IBOutlet private weak var logOutButton: UIBarButtonItem!
     override func viewDidLoad() {
         tableView.dataSource = self.dataSource
         tableView.delegate = self
@@ -27,6 +28,11 @@ final class ChatRoomsViewController: UIViewController {
         }
     }
 
+    @IBAction func tappedLogOut(_ sender: UIBarButtonItem) {
+        sender.isEnabled = false
+        SyncUser.logOutAllUsers()
+        hideShowViews(isLoggedIn: false)
+    }
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var tableView: UITableView!
     fileprivate var dataSource = ChatRoomDataSource()
@@ -34,10 +40,15 @@ final class ChatRoomsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let isLoggedIn = SyncUser.currentUserLoggedIn
-        loginButton.isHidden = isLoggedIn
-        tableView.isHidden = !isLoggedIn
+        hideShowViews(isLoggedIn: isLoggedIn)
         dataSource.fetchObjects()
         tableView.reloadData()
+    }
+    
+    private func hideShowViews(isLoggedIn: Bool){
+        loginButton.isHidden = isLoggedIn
+        tableView.isHidden = !isLoggedIn
+        logOutButton.isEnabled = isLoggedIn
     }
 }
 extension ChatRoomsViewController: UITableViewDelegate{

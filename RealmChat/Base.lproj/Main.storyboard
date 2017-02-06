@@ -55,8 +55,15 @@
                             <constraint firstItem="Q5u-iC-S4P" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wli-n5-2IH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RrX-Bh-j5Q"/>
+                    <navigationItem key="navigationItem" id="RrX-Bh-j5Q">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="QFq-NB-5gI">
+                            <connections>
+                                <action selector="tappedLogOut:" destination="BYZ-38-t0r" id="gB0-Ux-bRY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="logOutButton" destination="QFq-NB-5gI" id="VDF-Mg-hDR"/>
                         <outlet property="loginButton" destination="Q5u-iC-S4P" id="kob-Jy-ljN"/>
                         <outlet property="tableView" destination="bsx-De-IXG" id="7Lx-yn-MfR"/>
                         <segue destination="PP3-Xu-6OL" kind="show" id="xLN-0Z-ydh"/>
