@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 
 final class ChatRoomViewController: UIViewController{
-    //MARK: Properties
+    //TODO: Rather add the store here
     var chatRoom: ChatRoom?
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var textField: UITextField!

@@ -25,6 +25,7 @@
 		A9B239B21E3E8B24005AA6F9 /* ErrorConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B239B11E3E8B24005AA6F9 /* ErrorConvenience.swift */; };
 		A9B239B41E3E8B43005AA6F9 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B239B31E3E8B43005AA6F9 /* Login.swift */; };
 		A9C966851E48FDDF000513DB /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C966841E48FDDF000513DB /* RealmHelper.swift */; };
+		A9C966881E491265000513DB /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C966871E491265000513DB /* ChatCell.swift */; };
 		FC380333EFC7E0D5CA10E317 /* Pods_RealmChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79824751D000BB0A942625B3 /* Pods_RealmChatUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		A9B239B11E3E8B24005AA6F9 /* ErrorConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorConvenience.swift; path = Utils/ErrorConvenience.swift; sourceTree = "<group>"; };
 		A9B239B31E3E8B43005AA6F9 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Utils/Login.swift; sourceTree = "<group>"; };
 		A9C966841E48FDDF000513DB /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHelper.swift; path = Utils/RealmHelper.swift; sourceTree = "<group>"; };
+		A9C966871E491265000513DB /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCell.swift; path = Views/ChatCell.swift; sourceTree = "<group>"; };
 		B4B55FFE674FAD8327AB1085 /* Pods-RealmChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmChat/Pods-RealmChat.debug.xcconfig"; sourceTree = "<group>"; };
 		E88BC0611E1BBF8D42C54C82 /* Pods_RealmChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 		A9B2397E1E3E7C35005AA6F9 /* RealmChat */ = {
 			isa = PBXGroup;
 			children = (
+				A9C966861E49123F000513DB /* Views */,
 				A924F6591E40049A0073E2B3 /* DataSource */,
 				A924F6561E4001500073E2B3 /* Models */,
 				A9B239B01E3E8AB2005AA6F9 /* Utils */,
@@ -209,6 +212,14 @@
 				A9C966841E48FDDF000513DB /* RealmHelper.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		A9C966861E49123F000513DB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9C966871E491265000513DB /* ChatCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		BB4CE9F4067B307E2F7E8EAE /* Pods */ = {
@@ -510,6 +521,7 @@
 				A9AF60951E4283700099B682 /* UIStoryboardExtension.swift in Sources */,
 				A9B239B41E3E8B43005AA6F9 /* Login.swift in Sources */,
 				A924F65B1E4004B10073E2B3 /* ChatRoomDataSource.swift in Sources */,
+				A9C966881E491265000513DB /* ChatCell.swift in Sources */,
 				A924F6551E3FFA2A0073E2B3 /* SyncUserExtension.swift in Sources */,
 				A9B239AF1E3E818D005AA6F9 /* LoginViewController.swift in Sources */,
 				A9C966851E48FDDF000513DB /* RealmHelper.swift in Sources */,

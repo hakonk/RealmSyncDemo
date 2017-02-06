@@ -35,7 +35,7 @@ final class ChatRoomsViewController: UIViewController {
     }
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var tableView: UITableView!
-    fileprivate var dataSource = ChatRoomDataSource()
+    fileprivate var dataSource = ChatRoomsDataSource()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
