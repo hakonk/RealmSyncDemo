@@ -32,15 +32,6 @@ struct LoginHelper{
         return !username.isEmpty && !password.isEmpty
     }
     
-    private func configure(with user: SyncUser?, host: String){
-        if let user = user {
-            let syncUrl = URL(string: "realm://\(host):9080/\(user.identity!)/chatMessages")!
-            Realm.Configuration.defaultConfiguration = Realm.Configuration(
-                syncConfiguration: SyncConfiguration(user: user, realmURL: syncUrl),
-                objectTypes: ModelUtil.modelTypes)
-        }
-    }
-    
     func authenticate(authHost: String, callback: @escaping (SyncUser?, NSError?) -> Void) {
         guard isInputValid else {
             callback(nil, LoginError.insufficientInput.error)
@@ -56,7 +47,9 @@ struct LoginHelper{
                 if let error = error, error._code == SyncError.httpStatusCodeError.rawValue && (error.userInfo["statusCode"] as? Int) == 400 {
                     callback(nil, LoginError.wrongUserNamePassword.error)
                 } else {
-                    self.configure(with: user, host: authHost)
+                    if let user = user {
+                        RealmHelper.configure(user: user)
+                    }
                     callback(user, error)
                 }
             }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5950887BA4602C9073664F77 /* Pods_RealmChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E88BC0611E1BBF8D42C54C82 /* Pods_RealmChat.framework */; };
 		A8FF88AC07BEC5767F8A342E /* Pods_RealmChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD934A10B92498DA176AA2B /* Pods_RealmChatTests.framework */; };
-		A924F6551E3FFA2A0073E2B3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924F6541E3FFA2A0073E2B3 /* User.swift */; };
+		A924F6551E3FFA2A0073E2B3 /* SyncUserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924F6541E3FFA2A0073E2B3 /* SyncUserExtension.swift */; };
 		A924F6581E4001640073E2B3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924F6571E4001640073E2B3 /* Models.swift */; };
 		A924F65B1E4004B10073E2B3 /* ChatRoomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924F65A1E4004B10073E2B3 /* ChatRoomDataSource.swift */; };
 		A9AF60931E427A520099B682 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF60921E427A520099B682 /* ChatRoomViewController.swift */; };
@@ -24,6 +24,7 @@
 		A9B239AF1E3E818D005AA6F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B239AE1E3E818D005AA6F9 /* LoginViewController.swift */; };
 		A9B239B21E3E8B24005AA6F9 /* ErrorConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B239B11E3E8B24005AA6F9 /* ErrorConvenience.swift */; };
 		A9B239B41E3E8B43005AA6F9 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B239B31E3E8B43005AA6F9 /* Login.swift */; };
+		A9C966851E48FDDF000513DB /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C966841E48FDDF000513DB /* RealmHelper.swift */; };
 		FC380333EFC7E0D5CA10E317 /* Pods_RealmChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79824751D000BB0A942625B3 /* Pods_RealmChatUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +53,7 @@
 		4C7AA7CB687E3CA64306B061 /* Pods-RealmChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmChat/Pods-RealmChat.release.xcconfig"; sourceTree = "<group>"; };
 		6B6D8F070BC06A50A55280F9 /* Pods-RealmChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmChatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmChatTests/Pods-RealmChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		79824751D000BB0A942625B3 /* Pods_RealmChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A924F6541E3FFA2A0073E2B3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Utils/User.swift; sourceTree = "<group>"; };
+		A924F6541E3FFA2A0073E2B3 /* SyncUserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncUserExtension.swift; path = Utils/SyncUserExtension.swift; sourceTree = "<group>"; };
 		A924F6571E4001640073E2B3 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		A924F65A1E4004B10073E2B3 /* ChatRoomDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomDataSource.swift; sourceTree = "<group>"; };
 		A9AF60921E427A520099B682 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatRoomViewController.swift; path = ViewControllers/ChatRoomViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 		A9B239AE1E3E818D005AA6F9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		A9B239B11E3E8B24005AA6F9 /* ErrorConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorConvenience.swift; path = Utils/ErrorConvenience.swift; sourceTree = "<group>"; };
 		A9B239B31E3E8B43005AA6F9 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Utils/Login.swift; sourceTree = "<group>"; };
+		A9C966841E48FDDF000513DB /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHelper.swift; path = Utils/RealmHelper.swift; sourceTree = "<group>"; };
 		B4B55FFE674FAD8327AB1085 /* Pods-RealmChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmChat/Pods-RealmChat.debug.xcconfig"; sourceTree = "<group>"; };
 		E88BC0611E1BBF8D42C54C82 /* Pods_RealmChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -202,8 +204,9 @@
 			children = (
 				A9B239B11E3E8B24005AA6F9 /* ErrorConvenience.swift */,
 				A9B239B31E3E8B43005AA6F9 /* Login.swift */,
-				A924F6541E3FFA2A0073E2B3 /* User.swift */,
+				A924F6541E3FFA2A0073E2B3 /* SyncUserExtension.swift */,
 				A9AF60941E4283700099B682 /* UIStoryboardExtension.swift */,
+				A9C966841E48FDDF000513DB /* RealmHelper.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -507,8 +510,9 @@
 				A9AF60951E4283700099B682 /* UIStoryboardExtension.swift in Sources */,
 				A9B239B41E3E8B43005AA6F9 /* Login.swift in Sources */,
 				A924F65B1E4004B10073E2B3 /* ChatRoomDataSource.swift in Sources */,
-				A924F6551E3FFA2A0073E2B3 /* User.swift in Sources */,
+				A924F6551E3FFA2A0073E2B3 /* SyncUserExtension.swift in Sources */,
 				A9B239AF1E3E818D005AA6F9 /* LoginViewController.swift in Sources */,
+				A9C966851E48FDDF000513DB /* RealmHelper.swift in Sources */,
 				A9B239821E3E7C35005AA6F9 /* ChatRoomsViewController.swift in Sources */,
 				A9B239801E3E7C35005AA6F9 /* AppDelegate.swift in Sources */,
 				A9AF60931E427A520099B682 /* ChatRoomViewController.swift in Sources */,

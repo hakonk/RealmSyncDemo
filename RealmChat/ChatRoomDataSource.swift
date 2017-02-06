@@ -29,10 +29,10 @@ final class ChatRoomDataSource: NSObject{
 }
 
 extension ChatRoomDataSource: UITableViewDataSource{
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ _: UITableView, numberOfRowsInSection _: Int) -> Int {
         return chatRooms.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,6 +40,6 @@ extension ChatRoomDataSource: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomCell", for: indexPath)
         cell.textLabel?.text = chatRooms[indexPath.row].members
         cell.selectionStyle = .none
-        return UITableViewCell()
+        return cell
     }
 }

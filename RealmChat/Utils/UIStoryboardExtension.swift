@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 extension UIStoryboard{
-    
     static func viewController(id: String) -> UIViewController?{
         return UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: id)
     }

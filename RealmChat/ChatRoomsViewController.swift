@@ -33,8 +33,9 @@ final class ChatRoomsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loginButton.isHidden = User.isLoggedIn
-        tableView.isHidden = !User.isLoggedIn
+        let isLoggedIn = SyncUser.currentUserLoggedIn
+        loginButton.isHidden = isLoggedIn
+        tableView.isHidden = !isLoggedIn
         dataSource.fetchObjects()
         tableView.reloadData()
     }
