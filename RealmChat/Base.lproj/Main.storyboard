@@ -61,6 +61,11 @@
                                 <action selector="tappedLogOut:" destination="BYZ-38-t0r" id="gB0-Ux-bRY"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="gwr-w5-0lG">
+                            <connections>
+                                <action selector="tappedAdd:" destination="BYZ-38-t0r" id="r7c-2W-62i"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="logOutButton" destination="QFq-NB-5gI" id="VDF-Mg-hDR"/>

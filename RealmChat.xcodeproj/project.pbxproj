@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5950887BA4602C9073664F77 /* Pods_RealmChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E88BC0611E1BBF8D42C54C82 /* Pods_RealmChat.framework */; };
 		A8FF88AC07BEC5767F8A342E /* Pods_RealmChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD934A10B92498DA176AA2B /* Pods_RealmChatTests.framework */; };
+		A92182161E4BAD73005F3C96 /* MessageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92182151E4BAD73005F3C96 /* MessageStore.swift */; };
 		A924F6551E3FFA2A0073E2B3 /* SyncUserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924F6541E3FFA2A0073E2B3 /* SyncUserExtension.swift */; };
 		A924F6581E4001640073E2B3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924F6571E4001640073E2B3 /* Models.swift */; };
 		A924F65B1E4004B10073E2B3 /* ChatRoomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924F65A1E4004B10073E2B3 /* ChatRoomDataSource.swift */; };
@@ -54,6 +55,7 @@
 		4C7AA7CB687E3CA64306B061 /* Pods-RealmChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmChat/Pods-RealmChat.release.xcconfig"; sourceTree = "<group>"; };
 		6B6D8F070BC06A50A55280F9 /* Pods-RealmChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmChatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmChatTests/Pods-RealmChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		79824751D000BB0A942625B3 /* Pods_RealmChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A92182151E4BAD73005F3C96 /* MessageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStore.swift; sourceTree = "<group>"; };
 		A924F6541E3FFA2A0073E2B3 /* SyncUserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncUserExtension.swift; path = Utils/SyncUserExtension.swift; sourceTree = "<group>"; };
 		A924F6571E4001640073E2B3 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		A924F65A1E4004B10073E2B3 /* ChatRoomDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomDataSource.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				A924F65A1E4004B10073E2B3 /* ChatRoomDataSource.swift */,
+				A92182151E4BAD73005F3C96 /* MessageStore.swift */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				A924F65B1E4004B10073E2B3 /* ChatRoomDataSource.swift in Sources */,
 				A9C966881E491265000513DB /* ChatCell.swift in Sources */,
 				A924F6551E3FFA2A0073E2B3 /* SyncUserExtension.swift in Sources */,
+				A92182161E4BAD73005F3C96 /* MessageStore.swift in Sources */,
 				A9B239AF1E3E818D005AA6F9 /* LoginViewController.swift in Sources */,
 				A9C966851E48FDDF000513DB /* RealmHelper.swift in Sources */,
 				A9B239821E3E7C35005AA6F9 /* ChatRoomsViewController.swift in Sources */,

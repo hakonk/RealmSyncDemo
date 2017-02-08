@@ -30,19 +30,19 @@ struct RealmHelper{
     }
     
     private static func addIfEmpty(){
-        let realm = try! Realm()
-        if realm.isEmpty {
-            try! realm.write {
-                let chatRoom = ChatRoom()
-                chatRoom.members = "Test chat room"
-                var chatMessages = List<ChatMessage>()
-                for i in 0 ... 3{
-                    chatMessages.append(ChatMessage(text: "message - \(i)"))
-                }
-                chatRoom.messages = chatMessages
-                realm.add(chatRoom)
-            }
-        }
+//        let realm = try! Realm()
+//        if realm.isEmpty {
+//            try! realm.write {
+//                let chatRoom = ChatRoom()
+//                chatRoom.members = "Test chat room"
+//                var chatMessages = List<ChatMessage>()
+//                for i in 0 ... 3{
+//                    chatMessages.append(ChatMessage(text: "message - \(i)"))
+//                }
+//                chatRoom.messages = chatMessages
+//                realm.add(chatRoom)
+//            }
+//        }
     }
     
 }

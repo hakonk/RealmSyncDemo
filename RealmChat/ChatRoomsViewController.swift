@@ -12,37 +12,37 @@ import RealmSwift
 final class ChatRoomsViewController: UIViewController {
     
     @IBOutlet private weak var logOutButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         tableView.dataSource = self.dataSource
         tableView.delegate = self
+        dataSource.listener = self
         super.viewDidLoad()
     }
     
-    //TODO: Invoke from button tap
     private func createChatRoom(){
         let chatRoom = ChatRoom()
         chatRoom.members = "Test"
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(chatRoom)
-        }
+        dataSource.add(room: chatRoom)
     }
-
+    
+    @IBAction private func tappedAdd(_ sender: Any) {
+        createChatRoom()
+    }
+    
     @IBAction func tappedLogOut(_ sender: UIBarButtonItem) {
         sender.isEnabled = false
         SyncUser.logOutAllUsers()
         hideShowViews(isLoggedIn: false)
     }
     @IBOutlet private weak var loginButton: UIButton!
-    @IBOutlet private weak var tableView: UITableView!
-    fileprivate var dataSource = ChatRoomsDataSource()
+    @IBOutlet fileprivate weak var tableView: UITableView!
+    fileprivate var dataSource = ChatRoomsStore()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let isLoggedIn = SyncUser.currentUserLoggedIn
         hideShowViews(isLoggedIn: isLoggedIn)
-        dataSource.fetchObjects()
-        tableView.reloadData()
     }
     
     private func hideShowViews(isLoggedIn: Bool){
@@ -51,11 +51,18 @@ final class ChatRoomsViewController: UIViewController {
         logOutButton.isEnabled = isLoggedIn
     }
 }
+
+extension ChatRoomsViewController: StoreListener{
+    func storeUpdated() {
+        tableView.reloadData()
+    }
+}
+
 extension ChatRoomsViewController: UITableViewDelegate{
     
     func tableView(_ _: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewController = UIStoryboard.viewController(id: "ChatRoomViewController") as? ChatRoomViewController else { return }
-        viewController.chatRoom = dataSource.room(at: indexPath.row)
+        viewController.messageStore = MessageStore(with: dataSource.room(at: indexPath.row))
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -9,25 +9,38 @@
 import Foundation
 import RealmSwift
 
-private func fetchChatRooms() -> Results<ChatRoom>{
-    let realm = try! Realm()
-    return realm.objects(ChatRoom.self)
+protocol StoreListener: class{
+    func storeUpdated()
 }
 
-final class ChatRoomsDataSource: NSObject{
+final class ChatRoomsStore: Store{
     
-    func fetchObjects(){
-        chatRooms = fetchChatRooms()
+    override init(){
+        super.init()
+        
+        observerToken = chatRooms.addNotificationBlock {_ in
+            let realm = try! Realm()
+            self.chatRooms = realm.objects(ChatRoom.self)
+            self.listener?.storeUpdated()
+        }
+    }
+    
+    func add(room: ChatRoom){
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(room)
+        }
     }
     
     func room(at index: Int) -> ChatRoom{
         return chatRooms[index]
     }
     
-    lazy var chatRooms: Results<ChatRoom> = fetchChatRooms()
+    private var observerToken: NotificationToken?
+    fileprivate lazy var chatRooms: Results<ChatRoom> = try! Realm().objects(ChatRoom.self)
 }
 
-extension ChatRoomsDataSource: UITableViewDataSource{
+extension ChatRoomsStore: UITableViewDataSource{
     func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
@@ -39,36 +52,6 @@ extension ChatRoomsDataSource: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomCell", for: indexPath)
         cell.textLabel?.text = chatRooms[indexPath.row].members
         cell.selectionStyle = .none
-        return cell
-    }
-}
-
-final class MessageStore: NSObject{
-    fileprivate var messages: List<ChatMessage>
-    private let token: NotificationToken
-    private let collectionView: UICollectionView
-    init(with collectionView: UICollectionView, messages: List<ChatMessage>){
-        self.messages = messages
-        self.collectionView = collectionView
-        self.token = self.messages.addNotificationBlock { change in
-            collectionView.reloadData()
-        }
-        super.init()
-    }
-}
-
-extension MessageStore: UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChatCell", for: indexPath) as! ChatCell
-        cell.textLabel.text = messages[indexPath.item].text
         return cell
     }
 }
