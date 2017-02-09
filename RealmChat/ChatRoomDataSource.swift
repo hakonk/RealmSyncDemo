@@ -15,14 +15,13 @@ protocol StoreListener: class{
 
 final class ChatRoomsStore: Store{
     
-    override init(){
-        super.init()
-        
-        observerToken = chatRooms.addNotificationBlock {_ in
-            let realm = try! Realm()
+    func setup(){
+        let realm = try! Realm()
+        observerToken = realm.addNotificationBlock { (notification, realm) in
             self.chatRooms = realm.objects(ChatRoom.self)
             self.listener?.storeUpdated()
         }
+        chatRooms = realm.objects(ChatRoom.self)
     }
     
     func add(room: ChatRoom){
@@ -37,7 +36,7 @@ final class ChatRoomsStore: Store{
     }
     
     private var observerToken: NotificationToken?
-    fileprivate lazy var chatRooms: Results<ChatRoom> = try! Realm().objects(ChatRoom.self)
+    fileprivate var chatRooms: Results<ChatRoom>!
 }
 
 extension ChatRoomsStore: UITableViewDataSource{

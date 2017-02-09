@@ -17,10 +17,12 @@ final class MessageStore: Store{
     fileprivate var chatRoom: ChatRoom
     private var token: NotificationToken?
     
-    func append(message: ChatMessage){
+    func appendMessage(with text: String){
         let realm = try! Realm()
         try! realm.write {
+            let message = ChatMessage(text: text, chatRoom: chatRoom)
             chatRoom.messages.append(message)
+            realm.add(message)
             realm.add(chatRoom, update: true)
         }
     }
@@ -28,7 +30,6 @@ final class MessageStore: Store{
     init(with chatRoom: ChatRoom){
         self.chatRoom = chatRoom
         super.init()
-        
         self.token = self.chatRoom.addNotificationBlock { change in
             self.listener?.storeUpdated()
         }

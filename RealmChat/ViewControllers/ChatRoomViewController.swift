@@ -16,6 +16,11 @@ final class ChatRoomViewController: UIViewController{
     @IBOutlet private (set) weak var collectionView: UICollectionView!
     @IBOutlet private (set) weak var textField: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.dataSource = messageStore
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -25,7 +30,13 @@ final class ChatRoomViewController: UIViewController{
             let text = textField.text,
             text.characters.count > 0
             else {return}
-        messageStore.append(message: ChatMessage(text: text))
+        messageStore.appendMessage(with: text)
         
+    }
+}
+
+extension ChatRoomViewController: StoreListener{
+    func storeUpdated(){
+        collectionView.reloadData()
     }
 }

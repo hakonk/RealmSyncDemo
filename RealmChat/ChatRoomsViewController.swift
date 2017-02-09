@@ -17,6 +17,7 @@ final class ChatRoomsViewController: UIViewController {
         tableView.dataSource = self.dataSource
         tableView.delegate = self
         dataSource.listener = self
+        dataSource.setup()
         super.viewDidLoad()
     }
     
@@ -61,8 +62,13 @@ extension ChatRoomsViewController: StoreListener{
 extension ChatRoomsViewController: UITableViewDelegate{
     
     func tableView(_ _: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewController = UIStoryboard.viewController(id: "ChatRoomViewController") as? ChatRoomViewController else { return }
-        viewController.messageStore = MessageStore(with: dataSource.room(at: indexPath.row))
+        guard
+            let viewController = UIStoryboard.viewController(id: "ChatRoomViewController") as? ChatRoomViewController
+            else { return }
+        let room = dataSource.room(at: indexPath.row)
+        let store = MessageStore(with: room)
+        store.listener = viewController
+        viewController.messageStore = store
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -17,10 +17,12 @@ struct ModelUtil{
 
 final class ChatMessage: Object {
     dynamic var text = ""
+    var chatRoom: ChatRoom?
     
-    convenience init(text: String) {
+    required convenience init(text: String, chatRoom: ChatRoom) {
         self.init()
         self.text = text
+        self.chatRoom = chatRoom
     }
 }
 
