@@ -38,7 +38,7 @@ struct LoginHelper{
             return
         }
         let url = URL(string: "http://\(authHost):9080")!
-        
+        SyncUser.logOutAllUsers()
         let credentials = SyncCredentials.usernamePassword(username: username, password: password, register: register)
         SyncUser.logIn(with: credentials, server: url) { user, error in
             DispatchQueue.main.async {

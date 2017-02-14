@@ -15,8 +15,10 @@ final class LoginViewController: UIViewController{
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var authenticationHostTextField: UITextField!
     
-    @IBAction private func tappedCancel(_ _: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+    @IBOutlet weak var loggedInLabel: UILabel!{
+        didSet{
+            loggedInLabel.text = ""
+        }
     }
     
     private func setUserInteraction(enabled: Bool){
@@ -27,6 +29,7 @@ final class LoginViewController: UIViewController{
     }
     
     private func login(register: Bool){
+        
         setUserInteraction(enabled: false)
         let helper = LoginHelper(username: usernameTextField.text ?? "", password: passwordTextField.text ?? "", register: register)
         helper.authenticate(authHost: authenticationHostTextField.text ?? "") { [weak self] user, error in
@@ -36,7 +39,10 @@ final class LoginViewController: UIViewController{
                 strongSelf.display(message: error.improvedError, wasSuccessful: false)
             } else {
                 guard let user = user else { return }
-                strongSelf.display(message: "Logged in with user: \(user.identity)", wasSuccessful: true)
+                let message = "Logged in with user: \(user.identity)"
+                strongSelf.loggedInLabel.text = message
+                strongSelf.display(message: message, wasSuccessful: true)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "loggedIn"), object: nil)
             }
         }
     }

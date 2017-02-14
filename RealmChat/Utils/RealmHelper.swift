@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 struct RealmHelper{
-    static var DefaultHost = "127.0.0.1"
+    static var Host = "127.0.0.1"
     
-    static func configureWithCurrentUser(with host: String = DefaultHost) -> Bool {
+    static func configureWithCurrentUser(with host: String = Host) -> Bool {
         if let user = SyncUser.current {
             configure(user: user, with: host)
             return true
@@ -20,29 +20,11 @@ struct RealmHelper{
         return false
     }
     
-    static func configure(user: SyncUser, with host: String = DefaultHost){
-        let urlString = "realm://\(host):9080/\(user.identity ?? "")/chatMessages"
+    static func configure(user: SyncUser, with host: String = Host){
+        let urlString = "realm://\(host):9080/~/burritos"
         let syncUrl = URL(string: urlString)!
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             syncConfiguration: SyncConfiguration(user: user, realmURL: syncUrl),
-            objectTypes: ModelUtil.modelTypes)
-        addIfEmpty()
+            objectTypes: [Burrito.self])
     }
-    
-    private static func addIfEmpty(){
-//        let realm = try! Realm()
-//        if realm.isEmpty {
-//            try! realm.write {
-//                let chatRoom = ChatRoom()
-//                chatRoom.members = "Test chat room"
-//                var chatMessages = List<ChatMessage>()
-//                for i in 0 ... 3{
-//                    chatMessages.append(ChatMessage(text: "message - \(i)"))
-//                }
-//                chatRoom.messages = chatMessages
-//                realm.add(chatRoom)
-//            }
-//        }
-    }
-    
 }
