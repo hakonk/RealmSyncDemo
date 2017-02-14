@@ -298,6 +298,7 @@
 				TargetAttributes = {
 					A9B2397B1E3E7C35005AA6F9 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = GGPE947D78;
 						ProvisioningStyle = Automatic;
 					};
 					A9B2398F1E3E7C36005AA6F9 = {
@@ -664,6 +665,7 @@
 			baseConfigurationReference = B4B55FFE674FAD8327AB1085 /* Pods-RealmChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GGPE947D78;
 				INFOPLIST_FILE = RealmChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.hakonknutzen.RealmChat;
@@ -677,6 +679,7 @@
 			baseConfigurationReference = 4C7AA7CB687E3CA64306B061 /* Pods-RealmChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GGPE947D78;
 				INFOPLIST_FILE = RealmChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.hakonknutzen.RealmChat;

@@ -21,6 +21,23 @@ final class LoginViewController: UIViewController{
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addGestureRecognizer()
+    }
+    
+    private func addGestureRecognizer(){
+        let gestureReconizer = UITapGestureRecognizer()
+        gestureReconizer.numberOfTapsRequired = 1
+        gestureReconizer.addTarget(self, action: #selector(tappedScreen))
+        gestureReconizer.delegate = self
+        view.addGestureRecognizer(gestureReconizer)
+    }
+    
+    @objc private func tappedScreen(){
+        [usernameTextField, passwordTextField, authenticationHostTextField].forEach{$0?.resignFirstResponder()}
+    }
+    
     private func setUserInteraction(enabled: Bool){
         navigationController?.navigationBar.isUserInteractionEnabled = enabled
         view.subviews.forEach{
@@ -64,5 +81,17 @@ final class LoginViewController: UIViewController{
     }
     @IBAction private func tappedRegister(_ _: Any) {
         login(register: true)
+    }
+}
+
+extension LoginViewController: UIGestureRecognizerDelegate{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let point = touch.location(in: view)
+        for s in view.subviews{
+            if s.bounds.contains(point){
+                return false
+            }
+        }
+        return true
     }
 }

@@ -48,7 +48,7 @@ struct LoginHelper{
                     callback(nil, LoginError.wrongUserNamePassword.error)
                 } else {
                     if let user = user {
-                        RealmHelper.configure(user: user)
+                        RealmHelper.configure(user: user, with: authHost)
                     }
                     callback(user, error)
                 }

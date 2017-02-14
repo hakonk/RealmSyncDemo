@@ -118,6 +118,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="3UA-0n-FYG" firstAttribute="top" secondItem="xWz-8d-xYn" secondAttribute="bottom" constant="8" symbolic="YES" id="0wN-XV-QB3"/>
                             <constraint firstItem="spV-Ih-7GW" firstAttribute="leading" secondItem="ut5-ZB-qmY" secondAttribute="leadingMargin" id="5oU-qr-Uhf"/>

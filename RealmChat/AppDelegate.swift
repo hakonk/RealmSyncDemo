@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,8 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let wasLoggedIn = RealmHelper.configureWithCurrentUser()
-        print("was logged in with current user: \(wasLoggedIn)")
+        SyncUser.logOutAllUsers()
         return true
     }
 
