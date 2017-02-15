@@ -56,7 +56,7 @@ final class LoginViewController: UIViewController{
                 strongSelf.display(message: error.improvedError, wasSuccessful: false)
             } else {
                 guard let user = user else { return }
-                let message = "Logged in with user: \(user.identity)"
+                let message = "Logged in with user: \(user.identity ?? "")"
                 strongSelf.loggedInLabel.text = message
                 strongSelf.display(message: message, wasSuccessful: true)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "loggedIn"), object: nil)

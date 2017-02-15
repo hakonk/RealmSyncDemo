@@ -9,23 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Burrito: Object{
-    dynamic var name = ""
-    dynamic var date = Date()
-}
-
-struct BurritoHelper{
-    static let types = ["Juarez", "Poncho", "Mission", "Carne Asada", "Chimichanga", "Hapa", "Breakfast"]
-    static func new() -> Burrito{
-        let burrito = Burrito()
-        burrito.name = types[Int(arc4random() % UInt32(types.count))]
-        return burrito
-    }
-}
-
 class BurritoViewController: UIViewController {
-    
-    @IBOutlet private weak var logOutButton: UIBarButtonItem!
     
     var burritos: Results<Burrito>? {
         willSet{
@@ -54,12 +38,35 @@ class BurritoViewController: UIViewController {
         token?.stop()
     }
     
+    fileprivate func deleteBurrito(at index: Int){
+        let realm = try! Realm()
+        try! realm.write {
+            guard let object = burritos?[index] else { return }
+            realm.delete(object)
+        }
+    }
+    
+    private func addBurrito(){
+        let realm = try! Realm()
+        try! realm.write {
+            let burrito = BurritoHelper.new()
+            realm.add(burrito)
+        }
+    }
+    
+    private func addListener(){
+        NotificationCenter
+            .default
+            .addObserver(forName: Notification.Name(rawValue: "loggedIn"), object: nil, queue: .main) {
+                [weak self] _ in
+                self?.burritos = try! Realm().objects(Burrito.self).sorted(byKeyPath: "date", ascending: false)
+        }
+    }
+    
     override func viewDidLoad() {
         tableView.dataSource = self
         tableView.delegate = self
-        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "loggedIn"), object: nil, queue: .main) { [weak self] _ in
-            self?.burritos = try! Realm().objects(Burrito.self).sorted(byKeyPath: "date", ascending: false)
-        }
+        addListener()
         title = "Burritos"
         super.viewDidLoad()
     }
@@ -68,13 +75,7 @@ class BurritoViewController: UIViewController {
         tableView.setEditing(!tableView.isEditing, animated: true)
         button.isSelected = tableView.isEditing
     }
-    private func addBurrito(){
-        let realm = try! Realm()
-        try! realm.write {  
-            let burrito = BurritoHelper.new()
-            realm.add(burrito)
-        }
-    }
+    
     
     @IBAction private func tappedAdd(_ sender: Any) {
         addBurrito()
@@ -106,11 +107,7 @@ extension BurritoViewController: UITableViewDataSource{
 extension BurritoViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            let realm = try! Realm()
-            try! realm.write {
-                guard let object = burritos?[indexPath.row] else { return }
-                realm.delete(object)
-            }
+            deleteBurrito(at: indexPath.row)
         }
     }
 }
