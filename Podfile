@@ -1,15 +1,15 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'RealmChat' do
+target 'RealmSyncDemo' do
   use_frameworks!
   pod 'RealmSwift', '~> 2.3'
 
-  target 'RealmChatTests' do
+  target 'RealmSyncDemoTests' do
     inherit! :search_paths
   end
 
-  target 'RealmChatUITests' do
+  target 'RealmSyncDemoUITests' do
     inherit! :search_paths
   end
 

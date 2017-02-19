@@ -33,9 +33,12 @@ class BurritoViewController: UIViewController {
         }
     }
     var token: NotificationToken?
+    private var notifationObserver: NSObjectProtocol?
     
     deinit{
         token?.stop()
+        guard let notifationObserver = self.notifationObserver else { return }
+        NotificationCenter.default.removeObserver(notifationObserver)
     }
     
     fileprivate func deleteBurrito(at index: Int){
@@ -55,7 +58,7 @@ class BurritoViewController: UIViewController {
     }
     
     private func addListener(){
-        NotificationCenter
+        notifationObserver = NotificationCenter
             .default
             .addObserver(forName: Notification.Name(rawValue: "loggedIn"), object: nil, queue: .main) {
                 [weak self] _ in
